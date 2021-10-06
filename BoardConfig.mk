@@ -40,13 +40,14 @@ TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a73
 # Kernel
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 sched_enable_hmp=1 sched_enable_power_aware=1 service_locator.enable=1 androidboot.configfs=true androidboot.usbcontroller=a800000.dwc3
 BOARD_KERNEL_CMDLINE += loop.max_part=7
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_CMDLINE += usbcore.autosuspend=7
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 TARGET_KERNEL_SOURCE := kernel/xiaomi/sdm660
 TARGET_KERNEL_CLANG_COMPILE := true
-TARGET_KERNEL_CONFIG := tulip_defconfig
+TARGET_KERNEL_CONFIG := AtomX-tulip_defconfig
 TARGET_KERNEL_VERSION := 4.19
 KERNEL_LD := LD=ld.lld
 TARGET_KERNEL_ADDITIONAL_FLAGS := \
@@ -147,12 +148,6 @@ TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
 # Recovery
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
 
-# SELinux
-include device/qcom/sepolicy-legacy-um/SEPolicy.mk
-BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
-BOARD_PLAT_PUBLIC_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/public
-BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/private
-
 # Security patch level
 VENDOR_SECURITY_PATCH := 2018-11-01
 
@@ -173,6 +168,15 @@ WIFI_DRIVER_FW_PATH_P2P := "p2p"
 WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
 WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
 WPA_SUPPLICANT_VERSION := VER_0_8_X
+
+# Broken Rules
+BUILD_BROKEN_DUP_RULES := true
+BUILD_BROKEN_USES_BUILD_COPY_HEADERS := true
+ALLOW_MISSING_DEPENDENCIES := true
+SKIP_ABI_CHECKS := true
+BUILD_BROKEN_MISSING_REQUIRED_MODULES := true
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
+BUILD_BROKEN_PREBUILT_ELF_FILES := true
 
 # Inherit the proprietary files
 include vendor/xiaomi/twolip/BoardConfigVendor.mk

@@ -1,0 +1,2 @@
+add_lunch_combo aosp_twolip-userdebug
+add_lunch_combo aosp_twolip-eng
