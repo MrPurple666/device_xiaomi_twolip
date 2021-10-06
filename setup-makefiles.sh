@@ -10,6 +10,7 @@ set -e
 
 export DEVICE=twolip
 export VENDOR=xiaomi
+export INITIAL_COPYRIGHT_YEAR=2018
 
 # Load extract_utils and do some sanity checks
 MY_DIR="${BASH_SOURCE%/*}"
