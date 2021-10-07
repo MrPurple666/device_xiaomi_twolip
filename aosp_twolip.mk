@@ -22,6 +22,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_o_mr1.mk
 # Enable updating of APEXes
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
+# Inherit some common aosp stuff
+$(call inherit-product, vendor/aosp/config/common.mk)
+
 # Inherit from twolip device
 $(call inherit-product, $(LOCAL_PATH)/device.mk)
 
