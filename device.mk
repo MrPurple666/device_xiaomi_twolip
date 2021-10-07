@@ -20,7 +20,7 @@ DEVICE_PACKAGE_OVERLAYS += \
 
 PRODUCT_PACKAGES += \
     NoCutoutOverlay \
-    NotchBarKiller
+   #NotchBarKiller
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
 
